@@ -14,6 +14,10 @@
 @implementation ISOCDataProvider
 static ISOCGlobals *globals;
 
++ (void)init {
+	globals = [ISOCGlobals getVar];
+}
+
 + (void)fetchStaticValue:(NSString*)_id callback:(void (^)(NSArray *o, NSError* err))block {
 	NSString *url = nil;
 	
@@ -112,7 +116,16 @@ static ISOCGlobals *globals;
 }
 
 + (NSString*)valueForKey:(NSString*)key {
-	return (NSString*)[globals.appContent objectForKey:key];
+	__block NSString *value = [globals.appContent objectForKey:key];
+	if (!value) {
+		[ISOCDataProvider fetchStaticValue:key
+								  callback:^(NSArray *o, NSError *err) {
+									  value = [o.firstObject valueForKey:key];
+									  [self setString:value forKey:key];
+								  }];
+	}
+	
+	return value;
 }
 
 + (void)fetchTodayISOCContent {
@@ -121,63 +134,63 @@ static ISOCGlobals *globals;
 		key = [NSString stringWithFormat:@"fastBegins%d", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"fastEnds%d", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"menu%d_line1", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"menu%d_line2", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"menu%d_line3", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"menu%d_line4", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"tarawihStart%d", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"khatiraGiver%d", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"tafseerGiver%d", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"specialEvents1_%d", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"specialEvents1_%d", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		if (day % 7 == 3) {
 			key = [NSString stringWithFormat:@"khutbahGiver%d", day/7+1];
 			[ISOCDataProvider fetchStaticValueAsync:key
 										   callback:^(NSArray *o, NSError *err) {
-											   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+											   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 										   }];
 		}
 	}
@@ -189,38 +202,37 @@ static ISOCGlobals *globals;
 		key = [NSString stringWithFormat:@"menu%d_line1", i];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"menu%d_line2", i];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"menu%d_line3", i];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"menu%d_line4", i];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"specialEvents1_%d", i];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 		key = [NSString stringWithFormat:@"specialEvents2_%d", i];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 	}
 }
 
 + (void)fetchAppContent {
-	globals = [ISOCGlobals getVar];
 	globals.titles = [@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""] mutableCopy];
 	globals.descriptions = [@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""] mutableCopy];
 	
@@ -237,13 +249,17 @@ static ISOCGlobals *globals;
 	for (NSString *key in [globals.appContent allKeys]) {
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.appContent setObject:[o.firstObject valueForKey:@"text"] forKey:key];
+										   [self setString:[o.firstObject valueForKey:@"text"] forKey:key];
 									   }];
 	}
 }
 
++ (void)setString:(NSString*)text forKey:(NSString*)key {
+	if (text != nil)
+		[globals.appContent setObject:text forKey:key];
+}
+
 + (void)initAppContent {
-	globals = [ISOCGlobals getVar];
 	globals.appContent = [@{@"AppTitle" : @"",
 							@"timetableURL" : @"",
 							@"programsURL" : @"",
@@ -262,9 +278,12 @@ static ISOCGlobals *globals;
 							@"pow1kCurSponsors" : @"",
 							@"sponsorProject1" : @"",
 							@"sponsorProject2" : @"",
-							@"sponsorProject1" : @"",
+							@"sponsorProject3" : @"",
 							@"sponsorProject4" : @"",
 							@"sponsorProject5" : @"",
+							@"sponsorProject6" : @"",
+							@"sponsorProject7" : @"",
+							@"sponsorProject8" : @"",
 							@"gasBillAmt" : @"",
 							@"waterBillAmt" : @"",
 							@"trashBillAmt" : @"",
@@ -307,7 +326,9 @@ static ISOCGlobals *globals;
 							@"eidInstruct2" : @"",
 							@"eidInstruct3" : @"",
 							@"eidInstruct4" : @"",
-							@"donationPageURL" : @"http://www.isocmasjid.org"} mutableCopy];
+							@"donationPageURL" : @"http://www.isocmasjid.org",
+							@"40x40_1" : @"Be one of the 40 people to donate $2,500.",
+							@"40x40_amt" : @"0"} mutableCopy];
 }
 
 @end

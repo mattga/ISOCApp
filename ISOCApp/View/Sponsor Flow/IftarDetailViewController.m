@@ -38,7 +38,12 @@
 }
 
 - (IBAction)confirmPressed:(id)sender {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[ISOCDataProvider valueForKey:@"donationPageURL"]]];
+	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
+	url = [NSString stringWithFormat:@"%@?amount=%.2f", url, amount];
+	url = [NSString stringWithFormat:@"%@&day=%d", url, day-3];
+	
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+	NSLog(@"Opening url: %@", url);
 }
 
 #pragma mark - Table view data source

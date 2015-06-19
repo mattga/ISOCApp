@@ -47,9 +47,9 @@
 }
 
 - (void)dismissKeyboard:(id)sender {
-	int indiv = self.individualLabel.text.intValue;
-	int table = self.tableLabel.text.intValue;
-	int babysit = self.babysitLabel.text.intValue;
+	indiv = self.individualField.text.intValue;
+	table = self.tableField.text.intValue;
+	babysit = self.babysitField.text.intValue;
 	amount = indiv*60+table*600+babysit*30;
 	self.amountLabel.text = [NSString stringWithFormat:@"$%d", amount];
 
@@ -62,7 +62,15 @@
 }
 
 - (IBAction)confirmPressed:(id)sender {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[ISOCDataProvider valueForKey:@"donationPageURL"]]];
+	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
+	url = [NSString stringWithFormat:@"%@?amount=%d", url, amount];
+	url = [NSString stringWithFormat:@"%@&indiv=%d", url, indiv];
+	url = [NSString stringWithFormat:@"%@&table=%d", url, table];
+	url = [NSString stringWithFormat:@"%@&babysit=%d", url, babysit];
+	url = [NSString stringWithFormat:@"%@&type=banquetticket", url];
+	
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+	NSLog(@"Opening url: %@", url);
 }
 
 - (void)registerForKeyboardNotifications

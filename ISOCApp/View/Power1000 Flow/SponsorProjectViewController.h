@@ -16,8 +16,18 @@
 	double amount;
 }
 
+@property (strong, nonatomic) NSString *project;
+@property (strong, nonatomic) NSString *infoText;
+@property (nonatomic) int donation1;
+@property (nonatomic) int donation2;
+@property (nonatomic) int donation3;
+@property (nonatomic) int donation4;
+
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;
+@property (weak, nonatomic) IBOutlet UILabel *amtLabel;
 
 - (IBAction)continuePressed:(id)sender;
+
+- (void)setAmount:(int)amt;
 
 @end

@@ -12,15 +12,15 @@
 
 @interface BanquetTicketsViewController : DetailViewController <UITextFieldDelegate> {
 	UITextField *activeField;
-	int amount;
+	int amount, indiv, table, babysit;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-@property (weak, nonatomic) IBOutlet UITextField *individualLabel;
-@property (weak, nonatomic) IBOutlet UITextField *tableLabel;
-@property (weak, nonatomic) IBOutlet UITextField *babysitLabel;
+@property (weak, nonatomic) IBOutlet UITextField *individualField;
+@property (weak, nonatomic) IBOutlet UITextField *tableField;
+@property (weak, nonatomic) IBOutlet UITextField *babysitField;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;

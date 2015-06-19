@@ -7,16 +7,12 @@
 //
 
 #import "Power1000ViewController.h"
+#import "SponsorProjectViewController.h"
 
 @implementation Power1000ViewController
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
-	self.sponsorButton.layer.shadowRadius = 3;
-	self.sponsorButton.layer.shadowOpacity = .1;
-	self.sponsorButton.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
-	self.sponsorButton.layer.shadowColor = [UIColor blackColor].CGColor;
 	
 	self.projectButton.layer.shadowRadius = 3;
 	self.projectButton.layer.shadowOpacity = .1;
@@ -40,6 +36,16 @@
 	[attrStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17.f] range:range];
 	
 	self.sponsorCountLabel.attributedText = attrStr;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"sponsorProjectSegue"]) {
+		SponsorProjectViewController *pvc = segue.destinationViewController;
+		pvc.donation1 = 100;
+		pvc.donation2 = 200;
+		pvc.donation3 = 300;
+		pvc.donation4 = 400;
+	}
 }
 
 @end

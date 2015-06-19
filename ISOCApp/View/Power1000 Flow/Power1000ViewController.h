@@ -14,6 +14,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *sponsorCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *projectButton;
-@property (weak, nonatomic) IBOutlet UIButton *sponsorButton;
 
 @end

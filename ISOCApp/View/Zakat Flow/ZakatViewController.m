@@ -36,7 +36,12 @@
 }
 
 - (IBAction)continuePressed:(id)sender {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[ISOCDataProvider valueForKey:@"donationPageURL"]]];
+	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
+	url = [NSString stringWithFormat:@"%@?amount=%.2f", url, amount];
+	url = [NSString stringWithFormat:@"%@?type=zakat", url];
+	
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+	NSLog(@"Opening url: %@", url);
 }
 
 - (void)updateZakatTotal {
@@ -55,7 +60,8 @@
 		amount += calcTVC.calcField8.text.doubleValue;
 		amount += calcTVC.calcField9.text.doubleValue;
 		if (amount > 3550.0) {
-			self.totalField.text = [NSString stringWithFormat:@"$%.2f", .025*amount];
+			amount = .025*amount;
+			self.totalField.text = [NSString stringWithFormat:@"$%.2f", amount];
 		} else {
 			amount = 0.;
 			self.totalField.text = @"$0.00";

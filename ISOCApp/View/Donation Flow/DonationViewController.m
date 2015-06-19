@@ -30,7 +30,11 @@
 }
 
 - (IBAction)confirmPressed:(id)sender {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[ISOCDataProvider valueForKey:@"donationPageURL"]]];
+	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
+	url = [NSString stringWithFormat:@"%@?type=general", url];
+	
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+	NSLog(@"Opening url: %@", url);
 }
 
 @end

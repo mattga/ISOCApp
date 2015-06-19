@@ -28,18 +28,20 @@
 	[SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0.398 green:0.407 blue:0.415 alpha:0.860]];
 	[SVProgressHUD setForegroundColor:[UIColor whiteColor]];
 	
+	[ISOCDataProvider init];
 	ISOCGlobals *globals = [ISOCGlobals getVar];
 	globals.appContent = [[[NSUserDefaults standardUserDefaults] objectForKey:@"appContent"] mutableCopy];
 	globals.titles = [[[NSUserDefaults standardUserDefaults] objectForKey:@"committeeTitles"] mutableCopy];
 	globals.descriptions = [[[NSUserDefaults standardUserDefaults] objectForKey:@"committeeDescs"] mutableCopy];
-	globals.lastContentSync = [[[NSUserDefaults standardUserDefaults] objectForKey:@"lastSync"] mutableCopy];
+	globals.lastContentSync = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSync"];
 	if (globals.appContent == nil) {
 		[ISOCDataProvider initAppContent];
 	}
-	//if (!globals.lastContentSync || [globals.lastContentSync timeIntervalSinceNow] < -60 * 60 * 24) {
+//	if (!globals.lastContentSync || [globals.lastContentSync timeIntervalSinceNow] < -60 * 60 * 24) {
 		[ISOCDataProvider fetchAppContent];
 		[ISOCDataProvider fetchTodayISOCContent];
-	//}
+		globals.lastContentSync = [NSDate date];
+//	}
 
 	return YES;
 }
@@ -54,7 +56,7 @@
 	[[NSUserDefaults standardUserDefaults] setObject:[ISOCGlobals getVar].titles forKey:@"committeeTitles"];
 	[[NSUserDefaults standardUserDefaults] setObject:[ISOCGlobals getVar].descriptions forKey:@"committeeDescs"];
 	[[NSUserDefaults standardUserDefaults] setObject:[ISOCGlobals getVar].appContent forKey:@"appContent"];
-	[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"lastSync"];
+	[[NSUserDefaults standardUserDefaults] setObject:[ISOCGlobals getVar].lastContentSync forKey:@"lastSync"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	
 	NSLog(@"App content saved");

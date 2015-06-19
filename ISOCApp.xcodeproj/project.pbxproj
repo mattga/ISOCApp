@@ -92,6 +92,8 @@
 		A98C2E601B1AA98B00B3A519 /* SadaqatulFitrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98C2E5E1B1AA98B00B3A519 /* SadaqatulFitrViewController.m */; };
 		A9C817701B251BA500EC8330 /* CalendarCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C8176F1B251BA500EC8330 /* CalendarCollectionViewController.m */; };
 		A9D046B41B296841004FE672 /* RamadanCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D046B31B296841004FE672 /* RamadanCollectionViewCell.m */; };
+		A9D70DE81B3390830058D495 /* 40at40ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D70DE71B3390830058D495 /* 40at40ViewController.m */; };
+		A9D70DEA1B33A0620058D495 /* btn_40at40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9D70DE91B33A0620058D495 /* btn_40at40@2x.png */; };
 		A9DB62681B2C1DFB0031F7F5 /* Splash-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = A9DB62641B2C1DFB0031F7F5 /* Splash-568h@2x~iphone.png */; };
 		A9DB62691B2C1DFB0031F7F5 /* Splash-667h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = A9DB62651B2C1DFB0031F7F5 /* Splash-667h@2x~iphone.png */; };
 		A9DB626A1B2C1DFB0031F7F5 /* Splash-736h@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = A9DB62661B2C1DFB0031F7F5 /* Splash-736h@3x~iphone.png */; };
@@ -241,6 +243,9 @@
 		A9C8176F1B251BA500EC8330 /* CalendarCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarCollectionViewController.m; sourceTree = "<group>"; };
 		A9D046B21B296841004FE672 /* RamadanCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RamadanCollectionViewCell.h; sourceTree = "<group>"; };
 		A9D046B31B296841004FE672 /* RamadanCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RamadanCollectionViewCell.m; sourceTree = "<group>"; };
+		A9D70DE61B3390830058D495 /* 40at40ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 40at40ViewController.h; sourceTree = "<group>"; };
+		A9D70DE71B3390830058D495 /* 40at40ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 40at40ViewController.m; sourceTree = "<group>"; };
+		A9D70DE91B33A0620058D495 /* btn_40at40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_40at40@2x.png"; sourceTree = "<group>"; };
 		A9DB62641B2C1DFB0031F7F5 /* Splash-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		A9DB62651B2C1DFB0031F7F5 /* Splash-667h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash-667h@2x~iphone.png"; sourceTree = "<group>"; };
 		A9DB62661B2C1DFB0031F7F5 /* Splash-736h@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash-736h@3x~iphone.png"; sourceTree = "<group>"; };
@@ -434,6 +439,7 @@
 		A935BCC21B16CE18000A9DC5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A9D70DE21B3390520058D495 /* 40@40 Flow */,
 				A969E0001B27E81200C0C5E4 /* BanquetTickets Flow */,
 				A935BCC41B16D163000A9DC5 /* Base */,
 				A935BCC61B16D163000A9DC5 /* Donation Flow */,
@@ -530,6 +536,7 @@
 		A935BCD31B16D26B000A9DC5 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A9D70DE91B33A0620058D495 /* btn_40at40@2x.png */,
 				A90FB4601B2C235C00E8136C /* App Icon [Rounded] */,
 				A9DB62631B2C1DFB0031F7F5 /* Splash */,
 				A97F0BAD1B2B805F00649ABD /* ico_isoc40@2x.png */,
@@ -652,6 +659,15 @@
 			name = Subview;
 			sourceTree = "<group>";
 		};
+		A9D70DE21B3390520058D495 /* 40@40 Flow */ = {
+			isa = PBXGroup;
+			children = (
+				A9D70DE61B3390830058D495 /* 40at40ViewController.h */,
+				A9D70DE71B3390830058D495 /* 40at40ViewController.m */,
+			);
+			path = "40@40 Flow";
+			sourceTree = "<group>";
+		};
 		A9DB62631B2C1DFB0031F7F5 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +778,7 @@
 				A90FB4A41B2C264B00E8136C /* Icon-Small@3x.png in Resources */,
 				A97D0DAB1B216F7D004ECF51 /* ico_social@2x.png in Resources */,
 				A97D0DD81B24DD04004ECF51 /* ico_plug@2x.png in Resources */,
+				A9D70DEA1B33A0620058D495 /* btn_40at40@2x.png in Resources */,
 				A97D0DA31B216D6F004ECF51 /* ico_funeral@2x.png in Resources */,
 				A9F4A0591B2A5E54002BA106 /* btn_uncheck_blue@2x.png in Resources */,
 				A90FB49D1B2C264B00E8136C /* Icon-Small-40.png in Resources */,
@@ -923,6 +940,7 @@
 				A97D0DCE1B24D69D004ECF51 /* SponsorUtilityViewController.m in Sources */,
 				A97D0DB71B234A1B004ECF51 /* ZakatTableViewController.m in Sources */,
 				A97F0BB11B2B857900649ABD /* BanquetTicketsViewController.m in Sources */,
+				A9D70DE81B3390830058D495 /* 40at40ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
