@@ -13,11 +13,13 @@
 	uint selectedArea;
 }
 
-@property (strong, nonatomic) NSString *infoText;
+@property (strong, nonatomic) NSString *infoText, *titleText;
 @property (nonatomic) int amt1, amt2, amt3, amt4;
 
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (weak, nonatomic) IBOutlet UITextField *otherAmtLabel;
 @property (weak, nonatomic) IBOutlet UIButton *amtButton1;
 @property (weak, nonatomic) IBOutlet UIButton *amtButton2;
 @property (weak, nonatomic) IBOutlet UIButton *amtButton3;

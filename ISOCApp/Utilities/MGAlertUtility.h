@@ -20,4 +20,7 @@
 + (UIAlertController *)showYesNoAlertWithMessage:(NSString *)message title:(NSString*)title onView:(UIViewController*)view okAction:(void (^)(UIAlertAction *action))action;
 + (UIAlertController *)showInputAlertWithMessage:(NSString *)message title:(NSString *)title onView:(UIViewController *)view textHandler:(void (^)(UITextField *field))textHandler okAction:(void (^)(UIAlertAction *action))action;
 
++ (UIAlertController *)showCancelActionSheet:(NSString*)title message:(NSString*)message actions:(NSDictionary*)actions;
++ (UIAlertController *)showActionSheet:(NSString*)title message:(NSString*)message actions:(NSDictionary*)actions;
+
 @end

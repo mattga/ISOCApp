@@ -21,9 +21,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	
 	[[UINavigationBar appearance] setTranslucent:NO];
+	
+	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+	[self performSelector:@selector(removeSplashScreen) withObject:nil afterDelay:2];
+	navVC = [sb instantiateViewControllerWithIdentifier:@"mainNavVC"];
 	
 	[SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0.398 green:0.407 blue:0.415 alpha:0.860]];
 	[SVProgressHUD setForegroundColor:[UIColor whiteColor]];
@@ -37,13 +40,19 @@
 	if (globals.appContent == nil) {
 		[ISOCDataProvider initAppContent];
 	}
-//	if (!globals.lastContentSync || [globals.lastContentSync timeIntervalSinceNow] < -60 * 60 * 24) {
+	if (!globals.lastContentSync || [globals.lastContentSync timeIntervalSinceNow] < -60 * 60 * 24) {
 		[ISOCDataProvider fetchAppContent];
 		[ISOCDataProvider fetchTodayISOCContent];
 		globals.lastContentSync = [NSDate date];
-//	}
+	}
 
 	return YES;
+}
+
+- (void) removeSplashScreen
+{
+	[splashVC.view removeFromSuperview];
+	self.window.rootViewController = navVC;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

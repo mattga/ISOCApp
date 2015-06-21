@@ -14,10 +14,13 @@
 @interface DonationViewController : DetailViewController {
 	DonationsTableViewController *donationTVC;
 	NSString *ccConfirm, *personConfirm;
+	double amount, masjidAmt, ocsAmt, socialAmt, funeralAmt;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 
+- (void)dismissKeyboard:(id)sender;
 - (IBAction)confirmPressed:(id)sender;
 
 @end

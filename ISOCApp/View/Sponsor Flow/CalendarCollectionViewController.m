@@ -39,20 +39,22 @@
 	[super viewDidAppear:animated];
 	
 	self.collectionView.userInteractionEnabled = NO;
-	for (int i = 1; i <= 30; i++) {
-		NSString *key = [NSString stringWithFormat:@"iftarSponsors%d", i];
+	for (int i = 1; i < 30; i++) {
+		__block int day = i;
+		NSString *key = [NSString stringWithFormat:@"iftarSponsors%d", day];
 		[ISOCDataProvider fetchStaticValueAsync:key callback:^(NSArray *o, NSError *err) {
 			int numSponsors = [[o.firstObject valueForKey:@"text"] intValue];
 			[sponsoredIftars setValue:@(numSponsors) forKey:key];
 			dispatch_async(dispatch_get_main_queue(), ^{
-				if (i > 28) {
+				if (day > 28) {
 					self.collectionView.userInteractionEnabled = YES;
 					[SVProgressHUD dismiss];
 				}
 				
-				NSIndexPath *iPath = [NSIndexPath indexPathForItem:i+3 inSection:0];
+				NSIndexPath *iPath = [NSIndexPath indexPathForItem:day+3 inSection:0];
 				RamadanCollectionViewCell *_cell = (RamadanCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:iPath];
-				if (i+3 % 7 == 6) {
+				NSLog(@"Day %d: Sat? %d", day, day+3 % 7 == 6);
+				if (day % 7 == 3) {
 					[_cell sponsorsLabel].text = [NSString stringWithFormat:@"%d/2", numSponsors];
 					if (numSponsors >= 2) {
 						_cell.alpha = .5;
@@ -87,7 +89,7 @@
 		date = [NSString stringWithFormat:@"July %d", day%30];
 	}
 	
-	if (offset < 4 || offset > 33) {
+	if (offset < 4 || offset > 32) {
 		cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"normalCell" forIndexPath:indexPath];
 		[[[cell subviews].firstObject subviews].firstObject setText:date];
 	} else {

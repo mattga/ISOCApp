@@ -7,6 +7,8 @@
 //
 
 #import "BanquetTicketsViewController.h"
+#import "MGAlertUtility.h"
+#import "CheckoutViewController.h"
 
 @implementation BanquetTicketsViewController
 
@@ -62,15 +64,36 @@
 }
 
 - (IBAction)confirmPressed:(id)sender {
-	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
-	url = [NSString stringWithFormat:@"%@?amount=%d", url, amount];
-	url = [NSString stringWithFormat:@"%@&indiv=%d", url, indiv];
-	url = [NSString stringWithFormat:@"%@&table=%d", url, table];
-	url = [NSString stringWithFormat:@"%@&babysit=%d", url, babysit];
-	url = [NSString stringWithFormat:@"%@&type=banquetticket", url];
+	NSDictionary *params = @{@"amt"	: [NSString stringWithFormat:@"%d", amount],
+							 @"dt"	: @"Banquet Tickets",
+							 @"not"	: [NSString stringWithFormat:@"individual:%d,table:%d,babysitting:%d",indiv,table,babysit]};
 	
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-	NSLog(@"Opening url: %@", url);
+	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+	CheckoutViewController *vc = [sb instantiateViewControllerWithIdentifier:@"inPersonVC"];
+	vc.ccConfirm = [ISOCDataProvider valueForKey:@"banquetPostCCpayment"];
+	vc.ipConfirm = [ISOCDataProvider valueForKey:@"banquetInPersonPayment"];
+	vc.params = params;
+	
+	[self.navigationController pushViewController:vc animated:YES];
+	
+//	void (^onlineHandler)(UIAlertAction *action) = ^(UIAlertAction *action) {
+//		NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
+//		url = [NSString stringWithFormat:@"%@?amt=%d", url, amount];
+//		url = [NSString stringWithFormat:@"%@&dt=BanquetTickets", url];
+//		url = [NSString stringWithFormat:@"%@&not=individual:%d,table:%d,babysitting:%D", url, indiv,table,babysit];
+//		url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//		
+//		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//		NSLog(@"Opening url: %@", url);
+//	};
+//	
+//	void (^personHandler)(UIAlertAction *action) = ^(UIAlertAction *action) {
+//	};
+//	
+//	[MGAlertUtility showCancelActionSheet:@"Checkout"
+//								  message:@"How would you like to make your purchase?"
+//								  actions:@{@"Pay Online" : onlineHandler,
+//											@"Pay In Person" : personHandler}];
 }
 
 - (void)registerForKeyboardNotifications

@@ -22,5 +22,6 @@
 #define kISOCRamadanQuery			@"querydb.php"
 #define kISOCRamadanUpdate			@"admin/form2.php"
 #define kISOCRamadanJoinCommittee	@"admin/form3.php"
+#define kISOCRamadanPayInPerson		@"admin/payInPerson_get.php"
 
 #endif

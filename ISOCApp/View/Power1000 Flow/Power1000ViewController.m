@@ -41,6 +41,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString:@"sponsorProjectSegue"]) {
 		SponsorProjectViewController *pvc = segue.destinationViewController;
+		pvc.titleText = @"Power of 1000";
 		pvc.donation1 = 100;
 		pvc.donation2 = 200;
 		pvc.donation3 = 300;

@@ -10,5 +10,9 @@
 
 @interface DonationsTableViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *masjidField;
+@property (weak, nonatomic) IBOutlet UITextField *schoolField;
+@property (weak, nonatomic) IBOutlet UITextField *socialField;
+@property (weak, nonatomic) IBOutlet UITextField *funeralField;
 
 @end

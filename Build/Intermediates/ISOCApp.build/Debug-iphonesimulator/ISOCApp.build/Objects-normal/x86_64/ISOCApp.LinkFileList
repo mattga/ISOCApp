@@ -6,6 +6,7 @@
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/CommitteeTableViewCell.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/IftarDetailViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/SubmitInfoViewController.o
+/Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/CheckoutViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/BaseViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/ISOCGlobals.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/SponsorIftarViewController.o
@@ -13,8 +14,10 @@
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/SponsorTableViewCell.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/SponsorUtilityTableViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/OtherChoicesTableViewCell.o
+/Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/SplashViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/SponsorProjectViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/MGAlertUtility.o
+/Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/CheckoutTableViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/JoinCommitteeViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/RamadanCollectionViewCell.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/AppDelegate.o
@@ -30,4 +33,6 @@
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/DetailViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/SponsorUtilityViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/ZakatTableViewController.o
+/Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/TodayInfoTableViewController.o
 /Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/BanquetTicketsViewController.o
+/Users/mattga/Documents/iOS/ISOCApp/Build/Intermediates/ISOCApp.build/Debug-iphonesimulator/ISOCApp.build/Objects-normal/x86_64/40at40ViewController.o

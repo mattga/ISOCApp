@@ -33,6 +33,9 @@
 - (void)loadContent {
 	if (self.infoText)
 		self.infoLabel.text = self.infoText;
+	if (self.titleText)
+		self.titleLabel.text = self.titleText;
+	
 	self.amtLabel1.text = [NSString stringWithFormat:@"$%d", self.amt1];
 	self.amtLabel2.text = [NSString stringWithFormat:@"$%d", self.amt2];
 	self.amtLabel3.text = [NSString stringWithFormat:@"$%d", self.amt3];
@@ -57,14 +60,15 @@
 				@(self.amt2),
 				@(self.amt3),
 				@(self.amt4)];
-	projects = @[self.project1Label.text,
-				 self.project2Label.text,
-				 self.project3Label.text,
-				 self.project4Label.text,
-				 self.project5Label.text,
-				 self.project6Label.text,
-				 self.project7Label.text,
-				 self.project8Label.text];
+	projects = @[(self.project1Label.text ? self.project1Label.text : @""),
+				 (self.project2Label.text ? self.project2Label.text : @""),
+				 (self.project3Label.text ? self.project3Label.text : @""),
+				 (self.project4Label.text ? self.project4Label.text : @""),
+				 (self.project5Label.text ? self.project5Label.text : @""),
+				 (self.project6Label.text ? self.project6Label.text : @""),
+				 (self.project7Label.text ? self.project7Label.text : @""),
+				 (self.project8Label.text ? self.project8Label.text : @""),
+				 @"General Operations"];
 	
 	[(SponsorProjectViewController*)self.parentViewController setProject:projects[0]];
 	
@@ -93,6 +97,13 @@
 			[button setSelected:NO];
 		}
 	}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == 0) {
+		return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+	}
+	return 44.;
 }
 
 @end

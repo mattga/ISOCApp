@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *buttonsView;
 @property (weak, nonatomic) IBOutlet UIImageView *ramadanImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *isoc40ImageView;
 
 @end
 

@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) NSString *project;
 @property (strong, nonatomic) NSString *infoText;
+@property (strong, nonatomic) NSString *titleText;
 @property (nonatomic) int donation1;
 @property (nonatomic) int donation2;
 @property (nonatomic) int donation3;
@@ -28,6 +29,7 @@
 
 - (IBAction)continuePressed:(id)sender;
 
-- (void)setAmount:(int)amt;
+- (void)dismissKeyboard:(id)sender;
+- (void)setAmount:(double)amt;
 
 @end

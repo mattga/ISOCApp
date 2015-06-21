@@ -23,7 +23,6 @@
 	self.projectButton.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
 	self.projectButton.layer.shadowColor = [UIColor blackColor].CGColor;
 	
-//	self.infoLabel.text = [ISOCDataProvider valueForKey:@"40x40_1"];
 	[ISOCDataProvider fetchStaticValueAsync:@"40x40_amt"
 								   callback:^(NSArray *o, NSError *err) {
 									   dispatch_async(dispatch_get_main_queue(), ^{
@@ -34,11 +33,11 @@
 }
 
 - (void)setSponsorCount:(NSString*)count {
-	NSString *s = [NSString stringWithFormat:@"%@ people have already donated", count];
+	NSString *s = [NSString stringWithFormat:@"Current Number of Sponsors: %@", count];
 	NSRange range = [s rangeOfString:count];
 	NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:s];
 	[attrStr addAttribute:NSForegroundColorAttributeName value:kISOCDarkBlue range:range];
-	[attrStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:15.f] range:range];
+	[attrStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17.f] range:range];
 	
 	self.sponsorCountLabel.attributedText = attrStr;
 }
@@ -47,6 +46,7 @@
 	if ([segue.identifier isEqualToString:@"sponsorProjectSegue"]) {
 		SponsorProjectViewController *pvc = segue.destinationViewController;
 		pvc.infoText = @"Please indicate a total sponsorship amount. Each increment of $2,500 represents the number of sponsors you are committing for. You can sponsor $2,500 or more per member in your family, or on behalf of someone who has passed away.";
+		pvc.titleText = @"Forty at Forty";
 		pvc.donation1 = 2500;
 		pvc.donation2 = 5000;
 		pvc.donation3 = 7500;

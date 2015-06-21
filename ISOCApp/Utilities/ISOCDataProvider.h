@@ -14,6 +14,7 @@
 + (void)fetchStaticValueAsync:(NSString*)_id callback:(void (^)(NSArray *o, NSError* err))block;
 + (void)putStaticValue:(NSString*)_id value:(NSString*)value callback:(void (^)(id o, NSError *err))block;
 + (void)putJoinCommittee:(NSDictionary*)info callback:(void (^)(id o, NSError *err))block;
++ (void)putInPersonPayment:(NSDictionary*)info callback:(void (^)(id o, NSError *err))block;
 + (void)fetchTodayISOCContent;
 + (void)fetchMenuAndEvents;
 + (void)fetchAppContent;

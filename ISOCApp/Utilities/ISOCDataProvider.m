@@ -115,6 +115,32 @@ static ISOCGlobals *globals;
 	[connection startSync];
 }
 
++ (void)putInPersonPayment:(NSDictionary*)info callback:(void (^)(id, NSError *))block {
+	__block NSString *url = nil;
+	url = [NSString stringWithFormat:@"%@://%@/%@/%@", kISOCRamadanWebProtocol, kISOCRamadanWebHost, kISOCRamadanWebUri, kISOCRamadanPayInPerson];
+	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	
+	__block BOOL first = YES;
+	[info enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		if (first) {
+			url = [NSString stringWithFormat:@"%@?%@=%@", url, key, obj];
+			first = NO;
+		} else {
+			url = [NSString stringWithFormat:@"%@&%@=%@", url, key, obj];
+		}
+	}];
+	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+	[request setHTTPMethod:@"GET"];
+	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+	
+	MGConnection *connection = [[MGConnection alloc] initWithRequest:request];
+	[connection setCompletionBlock:block];
+	
+	[connection startSync];
+}
+
 + (NSString*)valueForKey:(NSString*)key {
 	__block NSString *value = [globals.appContent objectForKey:key];
 	if (!value) {
@@ -130,7 +156,7 @@ static ISOCGlobals *globals;
 
 + (void)fetchTodayISOCContent {
 	NSString *key;
-	for (int day = 1; day <= 30; day++) {
+	for (int day = 1; day < 30; day++) {
 		key = [NSString stringWithFormat:@"fastBegins%d", day];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
@@ -198,7 +224,7 @@ static ISOCGlobals *globals;
 
 + (void)fetchMenuAndEvents {
 	NSString *key;
-	for (int i = 1; i <= 30; i++) {
+	for (int i = 1; i < 30; i++) {
 		key = [NSString stringWithFormat:@"menu%d_line1", i];
 		[ISOCDataProvider fetchStaticValueAsync:key
 									   callback:^(NSArray *o, NSError *err) {
@@ -326,9 +352,11 @@ static ISOCGlobals *globals;
 							@"eidInstruct2" : @"",
 							@"eidInstruct3" : @"",
 							@"eidInstruct4" : @"",
-							@"donationPageURL" : @"http://www.isocmasjid.org",
+							@"donationPageURL" : @"http://www.isocmasjid.org/ramadanapp/isocmobile/donate.php",
 							@"40x40_1" : @"Be one of the 40 people to donate $2,500.",
 							@"40x40_amt" : @"0"} mutableCopy];
 }
+
+
 
 @end

@@ -9,28 +9,19 @@
 #import <UIKit/UIKit.h>
 
 #import "DetailViewController.h"
+#import "TodayInfoTableViewController.h"
 
 @interface TodayInfoViewController : DetailViewController {
 	NSCalendar *calendar;
 	int ramadanStart, ramadanOffset;
 	NSDate *startDate, *currentDate, *endDate;
+	TodayInfoTableViewController *tvc;
 }
-
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UIButton *prevButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *khutbahLabel;
-@property (weak, nonatomic) IBOutlet UILabel *beginFastLabel;
-@property (weak, nonatomic) IBOutlet UILabel *endFastLabel;
-@property (weak, nonatomic) IBOutlet UILabel *menuLabel;
-@property (weak, nonatomic) IBOutlet UILabel *tarawihLabel;
-@property (weak, nonatomic) IBOutlet UILabel *kathiraLabel;
-@property (weak, nonatomic) IBOutlet UILabel *tafseerLabel;
-@property (weak, nonatomic) IBOutlet UILabel *specialEventsLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *timetableButton;
 @property (weak, nonatomic) IBOutlet UIButton *programsButton;

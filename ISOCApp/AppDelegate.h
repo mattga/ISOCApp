@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "SplashViewController.h"
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+	SplashViewController *splashVC;
+	UINavigationController *navVC;
+}
 
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 

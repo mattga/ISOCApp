@@ -27,6 +27,7 @@
 	
 	if (self.view.frame.size.height < 500) {
 		self.ramadanImageView.hidden = YES;
+		self.isoc40ImageView.hidden = YES;
 	}
 }
 

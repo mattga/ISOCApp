@@ -37,8 +37,9 @@
 
 - (IBAction)continuePressed:(id)sender {
 	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
-	url = [NSString stringWithFormat:@"%@?amount=%.2f", url, amount];
-	url = [NSString stringWithFormat:@"%@?type=zakat", url];
+	url = [NSString stringWithFormat:@"%@?amt=%.2f", url, amount];
+	url = [NSString stringWithFormat:@"%@&dt=zakat", url];
+	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 	NSLog(@"Opening url: %@", url);
