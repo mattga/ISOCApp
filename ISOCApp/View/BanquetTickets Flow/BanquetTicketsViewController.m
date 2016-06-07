@@ -71,7 +71,7 @@
 	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
 	CheckoutViewController *vc = [sb instantiateViewControllerWithIdentifier:@"inPersonVC"];
 	vc.ccConfirm = [ISOCDataProvider valueForKey:@"banquetPostCCpayment"];
-	vc.ipConfirm = [ISOCDataProvider valueForKey:@"banquetInPersonPayment"];
+	vc.ipConfirm = [ISOCDataProvider valueForKey:@"banquetPostPayInPerson"];
 	vc.params = params;
 	
 	[self.navigationController pushViewController:vc animated:YES];

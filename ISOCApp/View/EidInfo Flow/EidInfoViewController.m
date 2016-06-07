@@ -10,8 +10,9 @@
 
 @implementation EidInfoViewController
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 	
 	self.titleLabel.text = [ISOCDataProvider valueForKey:@"eidTitle"];
 	self.dateLabel.text = [ISOCDataProvider valueForKey:@"eidDate"];
@@ -22,10 +23,6 @@
 								   [ISOCDataProvider valueForKey:@"eidInstruct2"],
 								   [ISOCDataProvider valueForKey:@"eidInstruct3"],
 								   [ISOCDataProvider valueForKey:@"eidInstruct4"]];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
 	
 	[SVProgressHUD dismiss];
 }

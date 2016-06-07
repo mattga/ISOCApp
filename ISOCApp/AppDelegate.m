@@ -34,8 +34,6 @@
 	[ISOCDataProvider init];
 	ISOCGlobals *globals = [ISOCGlobals getVar];
 	globals.appContent = [[[NSUserDefaults standardUserDefaults] objectForKey:@"appContent"] mutableCopy];
-	globals.titles = [[[NSUserDefaults standardUserDefaults] objectForKey:@"committeeTitles"] mutableCopy];
-	globals.descriptions = [[[NSUserDefaults standardUserDefaults] objectForKey:@"committeeDescs"] mutableCopy];
 	globals.lastContentSync = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSync"];
 	if (globals.appContent == nil) {
 		[ISOCDataProvider initAppContent];
@@ -61,9 +59,6 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-	[[NSUserDefaults standardUserDefaults] setObject:[ISOCGlobals getVar].appContent forKey:@"appContent"];
-	[[NSUserDefaults standardUserDefaults] setObject:[ISOCGlobals getVar].titles forKey:@"committeeTitles"];
-	[[NSUserDefaults standardUserDefaults] setObject:[ISOCGlobals getVar].descriptions forKey:@"committeeDescs"];
 	[[NSUserDefaults standardUserDefaults] setObject:[ISOCGlobals getVar].appContent forKey:@"appContent"];
 	[[NSUserDefaults standardUserDefaults] setObject:[ISOCGlobals getVar].lastContentSync forKey:@"lastSync"];
 	[[NSUserDefaults standardUserDefaults] synchronize];

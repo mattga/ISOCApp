@@ -46,6 +46,8 @@
 		pvc.donation2 = 200;
 		pvc.donation3 = 300;
 		pvc.donation4 = 400;
+		pvc.ccConfirm = [ISOCDataProvider valueForKey:@"pow1kPostCCpayment"];
+		pvc.ipConfirm = [ISOCDataProvider valueForKey:@"pow1kPostPayInPerson"];
 	}
 }
 

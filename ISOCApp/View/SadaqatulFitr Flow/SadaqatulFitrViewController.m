@@ -7,6 +7,7 @@
 //
 
 #import "SadaqatulFitrViewController.h"
+#import "CheckoutViewController.h"
 
 @implementation SadaqatulFitrViewController
 
@@ -37,13 +38,16 @@
 
 
 - (IBAction)confirmPressed:(id)sender {
-	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
-	url = [NSString stringWithFormat:@"%@?amt=%.2f", url, amount];
-	url = [NSString stringWithFormat:@"%@&dt=fitr", url];
-	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSDictionary *params = @{@"amt"	: [NSString stringWithFormat:@"%.2f", amount],
+							 @"dt"	: @"Sadaqatul Fitr"};
 	
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-	NSLog(@"Opening url: %@", url);
+	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+	CheckoutViewController *vc = [sb instantiateViewControllerWithIdentifier:@"inPersonVC"];
+	vc.ccConfirm = [ISOCDataProvider valueForKey:@"fitrPostCCpayment"];
+	vc.ipConfirm = [ISOCDataProvider valueForKey:@"fitrPostPayInPerson"];
+	vc.params = params;
+	
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

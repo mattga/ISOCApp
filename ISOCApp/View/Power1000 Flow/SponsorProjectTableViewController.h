@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SponsorProjectTableViewController : UITableViewController {
-	NSArray *amounts, *donateButtons, *areaButtons, *projects;
+	NSArray *amounts, *donateButtons, *areaButtons, *projects, *plabels;
 	uint selectedArea;
 }
 

@@ -10,7 +10,6 @@
 
 @interface ISOCGlobals : NSObject
 
-@property (strong, nonatomic) NSMutableArray *titles, *descriptions;
 @property (strong, nonatomic) NSMutableDictionary *appContent;
 @property (strong, nonatomic) NSString *confirmation;
 @property (strong, nonatomic) NSDate *lastContentSync;

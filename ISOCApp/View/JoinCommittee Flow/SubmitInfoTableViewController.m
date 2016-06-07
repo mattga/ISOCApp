@@ -95,7 +95,11 @@
 		}
 		[SVProgressHUD dismiss];
 		[MGAlertUtility showOKAlertWithMessage:@"Thank you for joining our team! ISOC will be contacting you soon!"
-										 title:@"Success"];
+										 title:@"Success"
+										onView:self
+									  okAction:^(UIAlertAction *action) {
+										  [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
+									  }];
 	}
 }
 

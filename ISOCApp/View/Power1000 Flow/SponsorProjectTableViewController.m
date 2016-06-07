@@ -28,6 +28,14 @@
 					self.area7Button,
 					self.area8Button,
 					self.generalButton];
+	plabels = @[self.project1Label,
+				self.project2Label,
+				self.project3Label,
+				self.project4Label,
+				self.project5Label,
+				self.project6Label,
+				self.project7Label,
+				self.project8Label,];
 }
 
 - (void)loadContent {
@@ -42,13 +50,21 @@
 	self.amtLabel4.text = [NSString stringWithFormat:@"$%d", self.amt4];
 	
 	self.project1Label.text = [ISOCDataProvider valueForKey:@"sponsorProject1"];
+	[self.project1Label sizeToFit];
 	self.project2Label.text = [ISOCDataProvider valueForKey:@"sponsorProject2"];
+	[self.project2Label sizeToFit];
 	self.project3Label.text = [ISOCDataProvider valueForKey:@"sponsorProject3"];
+	[self.project3Label sizeToFit];
 	self.project4Label.text = [ISOCDataProvider valueForKey:@"sponsorProject4"];
+	[self.project4Label sizeToFit];
 	self.project5Label.text = [ISOCDataProvider valueForKey:@"sponsorProject5"];
+	[self.project5Label sizeToFit];
 	self.project6Label.text = [ISOCDataProvider valueForKey:@"sponsorProject6"];
+	[self.project6Label sizeToFit];
 	self.project7Label.text = [ISOCDataProvider valueForKey:@"sponsorProject7"];
+	[self.project7Label sizeToFit];
 	self.project8Label.text = [ISOCDataProvider valueForKey:@"sponsorProject8"];
+	[self.project8Label sizeToFit];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -102,6 +118,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 0) {
 		return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+	} else if (indexPath.row < 8) {
+		return [plabels[(int)indexPath.row] frame].size.height + 20;
 	}
 	return 44.;
 }

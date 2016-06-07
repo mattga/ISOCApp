@@ -18,8 +18,26 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	titles = [ISOCGlobals getVar].titles;
-	descriptions = [ISOCGlobals getVar].descriptions;
+	titles = @[[ISOCDataProvider valueForKey:@"Committee1"],
+			   [ISOCDataProvider valueForKey:@"Committee2"],
+			   [ISOCDataProvider valueForKey:@"Committee3"],
+			   [ISOCDataProvider valueForKey:@"Committee4"],
+			   [ISOCDataProvider valueForKey:@"Committee5"],
+			   [ISOCDataProvider valueForKey:@"Committee6"],
+			   [ISOCDataProvider valueForKey:@"Committee7"],
+			   [ISOCDataProvider valueForKey:@"Committee8"],
+			   [ISOCDataProvider valueForKey:@"Committee9"],
+			   [ISOCDataProvider valueForKey:@"Committee10"]];
+	descriptions = @[[ISOCDataProvider valueForKey:@"CommitteeDesc1"],
+					 [ISOCDataProvider valueForKey:@"CommitteeDesc2"],
+					 [ISOCDataProvider valueForKey:@"CommitteeDesc3"],
+					 [ISOCDataProvider valueForKey:@"CommitteeDesc4"],
+					 [ISOCDataProvider valueForKey:@"CommitteeDesc5"],
+					 [ISOCDataProvider valueForKey:@"CommitteeDesc6"],
+					 [ISOCDataProvider valueForKey:@"CommitteeDesc7"],
+					 [ISOCDataProvider valueForKey:@"CommitteeDesc8"],
+					 [ISOCDataProvider valueForKey:@"CommitteeDesc9"],
+					 [ISOCDataProvider valueForKey:@"CommitteeDesc10"]];
 	selCommittees = [@[] mutableCopy];
 	
 	self.tableView.estimatedRowHeight = 120.;
@@ -39,7 +57,7 @@
 	NSString *committee;
 	if (button.tag >= 0) {
 		committee = [titles objectAtIndex:button.tag];
-		committee = [NSString stringWithFormat:@"%lu-%@", button.tag, committee];
+		committee = [NSString stringWithFormat:@"%lu-%@", (long)button.tag, committee];
 	} else if (button.tag == -1) {
 		committee = @"newsletter/allerts";
 	} else if (button.tag == -2) {
@@ -68,16 +86,16 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 11;
+	return 9;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = nil;
 	
-	if (indexPath.row < 10) {
+	if (indexPath.row < 8) {
 		NSString *title = titles[indexPath.row];
 		NSString *desc = descriptions[indexPath.row];
-		NSString *obj = [NSString stringWithFormat:@"%lu%@", indexPath.row, title];
+		NSString *obj = [NSString stringWithFormat:@"%lu%@", (long)indexPath.row, title];
 		cell = [tableView dequeueReusableCellWithIdentifier:@"committeeCell"];
 		[(CommitteeTableViewCell*)cell titleLable].text = (title == nil ? @"   -" : title);
 		[(CommitteeTableViewCell*)cell descLabel].text = (desc == nil ? @"   -" : desc);

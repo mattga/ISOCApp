@@ -7,6 +7,7 @@
 //
 
 #import "ZakatViewController.h"
+#import "CheckoutViewController.h"
 
 @implementation ZakatViewController
 
@@ -14,7 +15,7 @@
 {
 	[super viewDidLoad];
 	
-	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:calcTVC action:@selector(dismissKeyboard:)];
+	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
 	[self.view addGestureRecognizer:tapGesture];
 }
 
@@ -36,13 +37,16 @@
 }
 
 - (IBAction)continuePressed:(id)sender {
-	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
-	url = [NSString stringWithFormat:@"%@?amt=%.2f", url, amount];
-	url = [NSString stringWithFormat:@"%@&dt=zakat", url];
-	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSDictionary *params = @{@"amt"	: [NSString stringWithFormat:@"%.2f", amount],
+							 @"dt"	: @"Zakat"};
 	
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-	NSLog(@"Opening url: %@", url);
+	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+	CheckoutViewController *vc = [sb instantiateViewControllerWithIdentifier:@"inPersonVC"];
+	vc.ccConfirm = [ISOCDataProvider valueForKey:@"zakatPostCCpayment"];
+	vc.ipConfirm = [ISOCDataProvider valueForKey:@"zakatPostPayInPerson"];
+	vc.params = params;
+	
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)updateZakatTotal {

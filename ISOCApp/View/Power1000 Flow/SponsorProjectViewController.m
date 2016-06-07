@@ -7,9 +7,10 @@
 //
 
 #import "SponsorProjectViewController.h"
+#import "CheckoutViewController.h"
 
 @implementation SponsorProjectViewController
-@synthesize donation1, donation2, donation3, donation4, infoText, titleText;
+@synthesize donation1, donation2, donation3, donation4, infoText, titleText,  ccConfirm, ipConfirm;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -33,15 +34,17 @@
 }
 
 - (IBAction)continuePressed:(id)sender {
-	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
-	url = [NSString stringWithFormat:@"%@?amt=%.2f", url, amount];
-	url = [NSString stringWithFormat:@"%@&dt=%@", url, titleText];
-	url = [NSString stringWithFormat:@"%@&not=project:%@", url, self.project];
-	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSDictionary *params = @{@"amt"	: [NSString stringWithFormat:@"%.2f", amount],
+							 @"dt"	: @"Sponsor Project",
+							 @"not"	: [[NSString stringWithFormat:@"project:%@", self.project] stringByReplacingOccurrencesOfString:@"&" withString:@"and"]};
 	
+	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+	CheckoutViewController *vc = [sb instantiateViewControllerWithIdentifier:@"inPersonVC"];
+	vc.ccConfirm = ccConfirm;
+	vc.ipConfirm = ipConfirm;
+	vc.params = params;
 	
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-	NSLog(@"Opening url: %@", url);
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)dismissKeyboard:(id)sender {

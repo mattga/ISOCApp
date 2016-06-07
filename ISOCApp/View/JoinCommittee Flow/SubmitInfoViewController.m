@@ -10,6 +10,13 @@
 
 @implementation SubmitInfoViewController
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+	[self.view addGestureRecognizer:tapGesture];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	

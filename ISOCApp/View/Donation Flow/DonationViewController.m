@@ -7,6 +7,7 @@
 //
 
 #import "DonationViewController.h"
+#import "CheckoutViewController.h"
 
 @implementation DonationViewController
 
@@ -44,14 +45,17 @@
 }
 
 - (IBAction)confirmPressed:(id)sender {
-	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
-	url = [NSString stringWithFormat:@"%@?amt=%.2f", url, amount];
-	url = [NSString stringWithFormat:@"%@&dt=general", url];
-	url = [NSString stringWithFormat:@"%@&not=masjid:%.2f,ocs:%.2f,social:%.2f,funeral:%.2f", url, masjidAmt, ocsAmt, socialAmt, funeralAmt];
-	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSDictionary *params = @{@"amt"	: [NSString stringWithFormat:@"%.2f", amount],
+							 @"dt"	: @"General Donation",
+							 @"not"	: [NSString stringWithFormat:@"masjid:%.2f,ocs:%.2f,social:%.2f,funeral:%.2f", masjidAmt, ocsAmt, socialAmt, funeralAmt]};
 	
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-	NSLog(@"Opening url: %@", url);
+	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+	CheckoutViewController *vc = [sb instantiateViewControllerWithIdentifier:@"inPersonVC"];
+	vc.ccConfirm = [ISOCDataProvider valueForKey:@"generalPostCCpayment"];
+	vc.ipConfirm = [ISOCDataProvider valueForKey:@"generalPostPayInPerson"];
+	vc.params = params;
+	
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

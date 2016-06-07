@@ -9,6 +9,7 @@
 
 #import "IftarDetailViewController.h"
 #import "SponsorTableViewCell.h"
+#import "CheckoutViewController.h"
 
 @implementation IftarDetailViewController
 @synthesize day, numSponsors, amount;
@@ -38,14 +39,17 @@
 }
 
 - (IBAction)confirmPressed:(id)sender {
-	NSString *url = [ISOCDataProvider valueForKey:@"donationPageURL"];
-	url = [NSString stringWithFormat:@"%@?amt=%.2f", url, amount];
-	url = [NSString stringWithFormat:@"%@&dt=iftar", url];
-	url = [NSString stringWithFormat:@"%@&not=day:%d", url, day-3];
-	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSDictionary *params = @{@"amt"	: [NSString stringWithFormat:@"%.2f", amount],
+							 @"dt"	: @"Sponsor Iftar",
+							 @"not"	: [NSString stringWithFormat:@"day:%d", day-3]};
 	
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-	NSLog(@"Opening url: %@", url);
+	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+	CheckoutViewController *vc = [sb instantiateViewControllerWithIdentifier:@"inPersonVC"];
+	vc.ccConfirm = [ISOCDataProvider valueForKey:@"iftarPostCCpayment"];
+	vc.ipConfirm = [ISOCDataProvider valueForKey:@"iftarPostPayInPerson"];
+	vc.params = params;
+	
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Table view data source

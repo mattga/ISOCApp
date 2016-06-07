@@ -91,15 +91,16 @@
 								  @"em" : self.emailField.text};
 		[params2 enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 			if (first) {
-				url = [NSString stringWithFormat:@"%@?%@=$@", key, obj];
+				url = [NSString stringWithFormat:@"%@?%@=%@", url, key, obj];
 				first = NO;
 			} else {
-				url = [NSString stringWithFormat:@"%@&%@=$@", key, obj];
+				url = [NSString stringWithFormat:@"%@&%@=%@", url, key, obj];
 			}
 		}];
 		[self.params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-			url = [NSString stringWithFormat:@"%@&%@=$@", key, obj];
+			url = [NSString stringWithFormat:@"%@&%@=%@", url, key, obj];
 		}];
+		url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 		NSLog(@"Opening URL %@", url);
@@ -122,12 +123,20 @@
 		
 		[ISOCDataProvider putInPersonPayment:params2
 									callback:^(id o, NSError *err) {
-										dispatch_async(dispatch_get_main_queue(), ^{
-											[MGAlertUtility showOKAlertWithMessage:self.ipConfirm
-																			 title:@"Success"];
-											[self.parentViewController.navigationController popViewControllerAnimated:YES];
-											[SVProgressHUD dismiss];
-										});
+										if (!err) {
+											dispatch_async(dispatch_get_main_queue(), ^{
+												[MGAlertUtility showOKAlertWithMessage:self.ipConfirm
+																				 title:@"Success"
+																				onView:self
+																			  okAction:^(UIAlertAction *action) {
+																				  [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
+																			  }];
+												[SVProgressHUD dismiss];
+											});
+										} else {
+											[MGAlertUtility showErrorMessage:err
+																	  onView:self];
+										}
 									}];
 	}
 }

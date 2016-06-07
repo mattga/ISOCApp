@@ -7,4 +7,6 @@ dependencies: \
   /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/Utilities/ISOCDataProvider.h \
   /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/Utilities/ISOCGlobals.h \
   /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Zakat\ Flow/ZakatTableViewController.h \
-  /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Base/BaseTableViewController.h
+  /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Base/BaseTableViewController.h \
+  /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Checkout\ Flow/CheckoutViewController.h \
+  /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Checkout\ Flow/CheckoutTableViewController.h

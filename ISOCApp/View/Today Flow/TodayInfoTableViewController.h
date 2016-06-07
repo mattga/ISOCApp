@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *menuLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tarawihLabel;
 @property (weak, nonatomic) IBOutlet UILabel *kathiraLabel;
-@property (weak, nonatomic) IBOutlet UILabel *tafseerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *specialEventsLabel;
 
 - (void)setDataForDay:(int)day;

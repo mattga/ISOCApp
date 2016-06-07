@@ -28,7 +28,6 @@
 	self.menuLabel.text = [NSString stringWithFormat:@"%@\n%@\n%@\n%@", menu1, menu2, menu3, menu4];
 	self.tarawihLabel.text = [ISOCDataProvider valueForKey:[NSString stringWithFormat:@"tarawihStart%d", day]];
 	self.kathiraLabel.text = [ISOCDataProvider valueForKey:[NSString stringWithFormat:@"khatiraGiver%d", day]];
-	self.tafseerLabel.text = [ISOCDataProvider valueForKey:[NSString stringWithFormat:@"tafseerGiver%d", day]];
 	NSString *event1 = [ISOCDataProvider valueForKey:[NSString stringWithFormat:@"specialEvents1_%d", day]];
 	NSString *event2 = [ISOCDataProvider valueForKey:[NSString stringWithFormat:@"specialEvents2_%d", day]];
 	self.specialEventsLabel.text = [NSString stringWithFormat:@"%@\n%@", event1, event2];

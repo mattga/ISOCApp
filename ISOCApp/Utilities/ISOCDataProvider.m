@@ -131,9 +131,14 @@ static ISOCGlobals *globals;
 	}];
 	url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
+	NSString *authStr = [NSString stringWithFormat:@"%@:%@", @"editApp", @"woodlawn42"];
+	NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
+	NSString *authValue = [authData base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
+	
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
 	[request setHTTPMethod:@"GET"];
-	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:[NSString stringWithFormat:@"Basic %@", authValue] forHTTPHeaderField:@"Authorization"];
 	
 	MGConnection *connection = [[MGConnection alloc] initWithRequest:request];
 	[connection setCompletionBlock:block];
@@ -151,7 +156,7 @@ static ISOCGlobals *globals;
 								  }];
 	}
 	
-	return value;
+	return (value ? value : @"");
 }
 
 + (void)fetchTodayISOCContent {
@@ -259,17 +264,18 @@ static ISOCGlobals *globals;
 }
 
 + (void)fetchAppContent {
-	globals.titles = [@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""] mutableCopy];
-	globals.descriptions = [@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@""] mutableCopy];
-	
 	for (int i = 0; i < 10; i++) {
-		[ISOCDataProvider fetchStaticValueAsync:[NSString stringWithFormat:@"Committee%d", i+1]
+		__block NSString *key1 = [NSString stringWithFormat:@"Committee%d", i+1];
+		[ISOCDataProvider fetchStaticValueAsync:key1
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.titles setObject:[o.firstObject valueForKey:@"text"] atIndexedSubscript:i];
+										   NSString *s = [o.firstObject valueForKey:@"text"];
+										   [self setString:s forKey:key1];
 									   }];
-		[ISOCDataProvider fetchStaticValueAsync:[NSString stringWithFormat:@"CommitteeDesc%d", i+1]
+		__block NSString *key2 = [NSString stringWithFormat:@"CommitteeDesc%d", i+1];
+		[ISOCDataProvider fetchStaticValueAsync:key2
 									   callback:^(NSArray *o, NSError *err) {
-										   [globals.descriptions setObject:[o.firstObject valueForKey:@"text"] atIndexedSubscript:i];
+										   NSString *s = [o.firstObject valueForKey:@"text"];
+										   [self setString:s forKey:key1];
 									   }];
 	}
 	for (NSString *key in [globals.appContent allKeys]) {
@@ -283,6 +289,8 @@ static ISOCGlobals *globals;
 + (void)setString:(NSString*)text forKey:(NSString*)key {
 	if (text != nil)
 		[globals.appContent setObject:text forKey:key];
+	else
+		NSLog(@"NIL OBJECT FOR KEY %@", key);
 }
 
 + (void)initAppContent {
@@ -290,7 +298,8 @@ static ISOCGlobals *globals;
 							@"timetableURL" : @"",
 							@"programsURL" : @"",
 							@"menuURL" : @"",
-							@"payInPersonMsg" : @"",
+							@"iftarPostPayInPerson" : @"",
+							@"iftarPostCCpayment" : @"",
 							@"banquetTitle" : @"",
 							@"banquetDesc" : @"",
 							@"banquetDate" : @"",
@@ -300,7 +309,7 @@ static ISOCGlobals *globals;
 							@"banquetSched3" : @"",
 							@"banquetSched4" : @"",
 							@"banquetPostCCpayment" : @"",
-							@"banquetInPersonPayment" : @"",
+							@"banquetPostPayInPerson" : @"",
 							@"pow1kCurSponsors" : @"",
 							@"sponsorProject1" : @"",
 							@"sponsorProject2" : @"",
@@ -316,6 +325,8 @@ static ISOCGlobals *globals;
 							@"elecBillAmt" : @"",
 							@"pow1kPostCCpayment" : @"",
 							@"pow1kPostPayInPerson" : @"",
+							@"40x40PostCCpayment" : @"Thank you for becoming an ISOC Forty at Forty sponsor. Your receipt will be emailed to you.",
+							@"40x40PostPayInPerson" : @"Thank you for your generous pledge to become an ISOC Forty at Forty sponsor. Please bring your contribution pledge payment to the ISOC office or booth as soon as possible, or call(714) 531-1722 / email accounting@isocmasjid.org to make special arrangements. May Allah (swt) bless you and reward you.",
 							@"zakatDesc" : @"",
 							@"zakatPostCCpayment" : @"",
 							@"zakatPostPayInPerson" : @"",

@@ -11,7 +11,7 @@
 #import "DetailViewController.h"
 
 @interface JoinCommitteeViewController : DetailViewController <UITableViewDelegate, UITableViewDataSource> {
-	NSMutableArray *titles, *descriptions;
+	NSArray *titles, *descriptions;
 	NSMutableArray *selCommittees;
 }
 

@@ -6,4 +6,7 @@ dependencies: \
   /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/Constants.h \
   /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/Utilities/ISOCDataProvider.h \
   /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/Utilities/ISOCGlobals.h \
-  /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Power1000\ Flow/SponsorProjectTableViewController.h
+  /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Power1000\ Flow/SponsorProjectTableViewController.h \
+  /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Checkout\ Flow/CheckoutViewController.h \
+  /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Checkout\ Flow/CheckoutTableViewController.h \
+  /Users/mattga/Documents/iOS/ISOCApp/ISOCApp/View/Base/BaseTableViewController.h
